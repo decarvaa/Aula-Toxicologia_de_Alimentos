@@ -1,0 +1,2447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxicologia de Alimentos - Pós-Graduação</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .presentation {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide {
+            background: white;
+            margin: 20px 0;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            min-height: 600px;
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            color: #2980b9;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #34495e;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        h3::before {
+            content: '▶';
+            color: #e74c3c;
+            margin-right: 10px;
+            font-size: 0.8em;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .icon {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #3498db, #2ecc71);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 15px 20px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            margin-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #3498db;
+            border: 3px solid white;
+        }
+
+        .chart {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: end;
+            justify-content: space-around;
+            height: 200px;
+            margin: 20px 0;
+        }
+
+        .bar {
+            background: linear-gradient(to top, #3498db, #2ecc71);
+            width: 50px;
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+
+        .bar:hover {
+            filter: brightness(1.2);
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .flowchart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .flow-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 120px;
+            position: relative;
+        }
+
+        .flow-arrow {
+            font-size: 2em;
+            color: #3498db;
+            margin: 0 10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border: 2px solid #f39c12;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '⚠️';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #f39c12;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 1.2em;
+        }
+
+        .formula-box {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .case-study {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 8px solid #e74c3c;
+            margin: 20px 0;
+        }
+
+        .problem { background: linear-gradient(135deg, #ff6b6b, #ee5a52); }
+        .analysis { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+        .decision { background: linear-gradient(135deg, #45b7d1, #2196f3); }
+
+        .workshop-section {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .emphasis {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .research-highlight {
+            background: linear-gradient(135deg, #c3ec52 0%, #0ba29d 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                margin: 10px 0;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .flowchart {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Slide 1: Título -->
+        <div class="slide">
+            <div class="slide-number">1/60</div>
+            <h1>🧪 Toxicologia de Alimentos</h1>
+            <div class="center">
+                <h2>Vigilância, Controle e Avaliação de Riscos</h2>
+                <p style="font-size: 1.3em; margin: 30px 0; color: #7f8c8d;">CDPI - Toxicologia Industrial</p>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 15px; margin-top: 40px;">
+                    <p><strong>Prof. Dr. Arthur de Carvalho e Silva</strong></p>
+                    <p>📅 23/08/2025 | 🎯 60 slides interativos</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Agenda -->
+        <div class="slide">
+            <div class="slide-number">2/60</div>
+            <h1>📋 Agenda da Aula</h1>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>🏛️ Marco Regulatório</h3>
+                    <p>ANVISA, MAPA, Codex Alimentarius</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>⚗️ Contaminantes Químicos</h3>
+                    <p>RDC 722/2022, metais, micotoxinas, acrilamida</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>🦠 Padrões Microbiológicos</h3>
+                    <p>RDC 724/2022 e toxinas microbianas</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>🌱 Resíduos de Agrotóxicos</h3>
+                    <p>LMR, PARA e monitoramento</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>🧪 Aditivos Alimentares</h3>
+                    <p>RDC 778/2023, IN 211/2023, RDC 779/2023</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>📦 Materiais de Contato</h3>
+                    <p>RDC 51/2010, RDC 854/2024, migração</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>📖 Estudos de Caso</h3>
+                    <p>Problema → Análise → Decisão</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>🎯 Workshop Prático</h3>
+                    <p>Cálculos de TDI, ARfD, EDI</p>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Objetivos de Aprendizagem -->
+        <div class="slide">
+            <div class="slide-number">3/60</div>
+            <h1>🎯 Objetivos da aula</h1>
+            <div class="grid">
+                <div class="card">
+                    <h3>🔍 Analisar</h3>
+                    <p>Marco regulatório brasileiro e internacional para contaminantes em alimentos</p>
+                </div>
+                <div class="card">
+                    <h3>⚖️ Avaliar</h3>
+                    <p>Riscos toxicológicos associados a diferentes tipos de contaminação alimentar</p>
+                </div>
+                <div class="card">
+                    <h3>🧮 Calcular</h3>
+                    <p>Parâmetros toxicológicos (TDI, ARfD, EDI) em cenários reais</p>
+                </div>
+                <div class="card">
+                    <h3>🎯 Aplicar</h3>
+                    <p>Conhecimentos em situações práticas de vigilância sanitária</p>
+                </div>
+                <div class="card">
+                    <h3>📊 Interpretar</h3>
+                    <p>Dados analíticos e laudos laboratoriais para tomada de decisão</p>
+                </div>  
+            </div>
+        </div>
+
+        <!-- BLOCO 1: PANORAMA REGULATÓRIO -->
+        <!-- Slide 4: Introdução ao Marco Regulatório -->
+        <div class="slide">
+            <div class="slide-number">4/60</div>
+            <h1>🏛️ Marco Regulatório</h1>
+            <h2>A Tríade da Segurança Alimentar</h2>
+            <div class="flowchart">
+                <div class="flow-box">
+                    <h3>ANVISA</h3>
+                    <p>Vigilância Sanitária</p>
+                </div>
+                <div class="flow-arrow">⬌</div>
+                <div class="flow-box">
+                    <h3>🌾 MAPA</h3>
+                    <p>Agropecuária</p>
+                </div>
+                <div class="flow-arrow">⬌</div>
+                <div class="flow-box">
+                    <h3>🌍 CODEX</h3>
+                    <p>Padrão Internacional</p>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <h3>Visão Sistêmica</h3>
+                <p>A segurança alimentar no Brasil é resultado da <strong>integração harmoniosa</strong> entre regulamentação sanitária, controle agropecuário e harmonização internacional. Cada órgão atua em sua competência, mas todos convergem para o mesmo objetivo: <em>proteger a saúde do consumidor</em>.</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: ANVISA - Competências -->
+        <div class="slide">
+            <div class="slide-number">5/60</div>
+            <h2>ANVISA - Agência Nacional de Vigilância Sanitária</h2>
+            <div class="two-column">
+                <div>
+                    <h3>📋 Competências Principais</h3>
+                    <ul>
+                        <li><strong>Contaminantes químicos</strong> em alimentos</li>
+                        <li><strong>Padrões microbiológicos</strong> para alimentos</li>
+                        <li><strong>Aditivos alimentares</strong> e coadjuvantes</li>
+                        <li><strong>Materiais em contato</strong> com alimentos</li>
+                        <li><strong>Rotulagem nutricional</strong> e alegações</li>
+                        <li><strong>Suplementos</strong> e alimentos especiais</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>📊 Marco Legal Atual</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <strong>RDC 722/2022</strong>
+                            <p>Contaminantes químicos</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>RDC 724/2022</strong>
+                            <p>Padrões microbiológicos</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>RDC 778/2023</strong>
+                            <p>Aditivos alimentares</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>RDC 854/2024</strong>
+                            <p>Materiais plásticos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: MAPA - Agropecuária -->
+        <div class="slide">
+            <div class="slide-number">6/60</div>
+            <h2>🌾 MAPA - Ministério da Agricultura e Pecuária</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🚜 Agrotóxicos</h3>
+                    <ul>
+                        <li>Registro de defensivos</li>
+                        <li>Estabelecimento de LMR</li>
+                        <li>Programa PARA</li>
+                        <li>Monitoramento de resíduos</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🥩 Produtos de Origem Animal</h3>
+                    <ul>
+                        <li>RIISPOA (Decreto 10.468/2020)</li>
+                        <li>Inspeção sanitária</li>
+                        <li>PNCRC - resíduos em POA</li>
+                        <li>Certificação para exportação</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🌱 Produtos de Origem Vegetal</h3>
+                    <ul>
+                        <li>Fiscalização de defensivos</li>
+                        <li>Controle de pragas</li>
+                        <li>Certificação orgânica</li>
+                        <li>Vigilância fitossanitária</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <p><strong>Integração MAPA-ANVISA:</strong> O MAPA estabelece LMR para agrotóxicos e a ANVISA monitora através do PARA. Produtos inspecionados pelo MAPA seguem também diretrizes sanitárias da ANVISA.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Codex Alimentarius -->
+        <div class="slide">
+            <div class="slide-number">7/60</div>
+            <h2>🌍 Codex Alimentarius - Padrão Internacional</h2>
+            <div class="two-column">
+                <div>
+                    <h3>🏢 Estrutura e Missão</h3>
+                    <p>Programa conjunto <strong>FAO/WHO</strong> estabelecido em 1963</p>
+                    <ul>
+                        <li>Proteger a saúde dos consumidores</li>
+                        <li>Facilitar o comércio internacional</li>
+                        <li>Harmonizar padrões alimentares</li>
+                        <li>Promover práticas leais de comércio</li>
+                    </ul>
+                    
+                    <h3>📜 Principais Instrumentos</h3>
+                    <ul>
+                        <li><strong>GSCTFF:</strong> Contaminantes e toxinas</li>
+                        <li><strong>CCPR:</strong> Resíduos de pesticidas</li>
+                        <li><strong>CCFA:</strong> Aditivos alimentares</li>
+                        <li><strong>CCFH:</strong> Higiene dos alimentos</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="chart">
+                        <h3>📊 Adoção no Brasil</h3>
+                        <div class="bar-chart">
+                            <div class="bar" style="height: 90%;">
+                                <div class="bar-value">90%</div>
+                                <div class="bar-label">Contaminantes</div>
+                            </div>
+                            <div class="bar" style="height: 85%;">
+                                <div class="bar-value">85%</div>
+                                <div class="bar-label">Pesticidas</div>
+                            </div>
+                            <div class="bar" style="height: 75%;">
+                                <div class="bar-value">75%</div>
+                                <div class="bar-label">Aditivos</div>
+                            </div>
+                            <div class="bar" style="height: 95%;">
+                                <div class="bar-value">95%</div>
+                                <div class="bar-label">Micro.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="highlight-box">
+                        <p><strong>Harmonização Regulatória:</strong> O Brasil adota aproximadamente 85% dos padrões Codex, facilitando exportações e garantindo segurança alimentar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOCO 2: CONTAMINANTES QUÍMICOS -->
+        <!-- Slide 8: RDC 722/2022 - Visão Geral -->
+        <div class="slide">
+            <div class="slide-number">8/60</div>
+            <h1>⚗️ Contaminantes Químicos</h1>
+            <h2>RDC 722/2022 - Revolução Regulatória</h2>
+            <div class="highlight-box">
+                <h3>🎯 Principais Inovações</h3>
+                <div class="two-column">
+                    <div>
+                        <ul>
+                            <li><strong>Consolidação:</strong> Unifica 8 regulamentos anteriores</li>
+                            <li><strong>Harmonização:</strong> Alinhamento com Codex</li>
+                            <li><strong>Ampliação:</strong> Novos contaminantes incluídos</li>
+                            <li><strong>Flexibilização:</strong> Critérios ALARA/ALARP</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><strong>Atualização:</strong> Revisão científica atual</li>
+                            <li><strong>Praticidade:</strong> Tabelas organizadas por alimento</li>
+                            <li><strong>Transparência:</strong> Metodologia explícita</li>
+                            <li><strong>Rastreabilidade:</strong> Referências científicas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flowchart">
+                <div class="flow-box">Identificação do Perigo</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Avaliação da Exposição</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Caracterização do Risco</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Gerenciamento</div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Classificação de Contaminantes -->
+        <div class="slide">
+            <div class="slide-number">9/60</div>
+            <h2>📊 Classificação dos Contaminantes Químicos</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🏭 Metais e Elementos</h3>
+                    <ul>
+                        <li><strong>Chumbo (Pb)</strong> - Neurotóxico</li>
+                        <li><strong>Cádmio (Cd)</strong> - Nefrotóxico</li>
+                        <li><strong>Mercúrio (Hg)</strong> - Neurotóxico</li>
+                        <li><strong>Arsênio (As)</strong> - Carcinogênico</li>
+                        <li><strong>Cromo VI</strong> - Carcinogênico</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🍄 Micotoxinas</h3>
+                    <ul>
+                        <li><strong>Aflatoxinas</strong> - Carcinogênicas</li>
+                        <li><strong>Ocratoxina A</strong> - Nefrotóxica</li>
+                        <li><strong>Patulina</strong> - Genotóxica</li>
+                        <li><strong>DON</strong> - Imunossupressora</li>
+                        <li><strong>Fumonisinas</strong> - Hepatotóxicas</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🔥 Contaminantes de Processo</h3>
+                    <ul>
+                        <li><strong>Acrilamida</strong> - Neurotóxica</li>
+                        <li><strong>Hidrocarbonetos aromáticos</strong></li>
+                        <li><strong>Furanos</strong> - Hepatotóxicos</li>
+                        <li><strong>Nitrosaminas</strong> - Carcinogênicas</li>
+                        <li><strong>Cloropropanóis</strong></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🏭 Contaminantes Industriais</h3>
+                    <ul>
+                        <li><strong>Dioxinas e furanos</strong></li>
+                        <li><strong>PCBs</strong> - Persistentes</li>
+                        <li><strong>Melamina</strong> - Nefrotóxica</li>
+                        <li><strong>Compostos perfluorados</strong></li>
+                        <li><strong>Ftalatos</strong> - Desreguladores</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Metais Pesados - Chumbo -->
+        <div class="slide">
+            <div class="slide-number">10/60</div>
+            <h2>🔗 Chumbo (Pb) - O Metal Neurotóxico</h2>
+            <div class="two-column">
+                <div>
+                    <h3>🎯 Características Toxicológicas</h3>
+                    <ul>
+                        <li><strong>Órgão-alvo:</strong> Sistema nervoso</li>
+                        <li><strong>Efeitos:</strong> Déficit cognitivo, comportamental</li>
+                        <li><strong>População crítica:</strong> Crianças</li>
+                        <li><strong>BMDL01:</strong> 0,5 μg/kg pc/dia</li>
+                        <li><strong>Não há nível seguro!</strong></li>
+                    </ul>
+                    
+                    <h3>📍 Fontes de Exposição</h3>
+                    <ul>
+                        <li>Água contaminada</li>
+                        <li>Tintas antigas</li>
+                        <li>Cerâmicas vidradas</li>
+                        <li>Alimentos cultivados em solos contaminados</li>
+                        <li>Soldas em latas</li>
+                    </ul>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Alimento</th>
+                            <th>Limite (mg/kg)</th>
+                        </tr>
+                        <tr>
+                            <td>Fórmulas infantis</td>
+                            <td>0,01</td>
+                        </tr>
+                        <tr>
+                            <td>Cereais infantis</td>
+                            <td>0,04</td>
+                        </tr>
+                        <tr>
+                            <td>Frutas</td>
+                            <td>0,1</td>
+                        </tr>
+                        <tr>
+                            <td>Hortaliças folhosas</td>
+                            <td>0,3</td>
+                        </tr>
+                        <tr>
+                            <td>Cereais</td>
+                            <td>0,2</td>
+                        </tr>
+                        <tr>
+                            <td>Peixes predadores</td>
+                            <td>0,3</td>
+                        </tr>
+                    </table>
+                    <div class="formula-box">
+                        <strong>EDI = (C × IR) / BW</strong><br>
+                        <small>C = Concentração | IR = Taxa de ingestão | BW = Peso corporal</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Aflatoxinas -->
+        <div class="slide">
+            <div class="slide-number">11/60</div>
+            <h2>🍄 Aflatoxinas - Carcinógenos Classe 1</h2>
+            <div class="highlight-box">
+                <h3>⚠️ Alerta Crítico</h3>
+                <p>Aflatoxinas são <strong>carcinógenos genotóxicos</strong> - não existe dose segura! Princípio ALARA aplicado.</p>
+            </div>
+            
+            <div class="two-column">
+                <div>
+                    <h3>🔬 Características</h3>
+                    <ul>
+                        <li><strong>Produtor:</strong> <em>Aspergillus flavus, A. parasiticus</em></li>
+                        <li><strong>Tipos:</strong> AFB1, AFB2, AFG1, AFG2, AFM1</li>
+                        <li><strong>Mais tóxica:</strong> AFB1 (potência 10x AFG1)</li>
+                        <li><strong>Condições:</strong> 25-30°C, UR >80%</li>
+                        <li><strong>pH ótimo:</strong> 4,0-6,0</li>
+                    </ul>
+                    
+                    <h3>🎯 Alimentos de Risco</h3>
+                    <ul>
+                        <li>Amendoim e derivados</li>
+                        <li>Milho e derivados</li>
+                        <li>Castanhas do Brasil</li>
+                        <li>Figos secos</li>
+                        <li>Especiarias</li>
+                        <li>Leite (AFM1)</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="chart">
+                        <h3>📊 Limites RDC 722/2022</h3>
+                        <table>
+                            <tr>
+                                <th>Produto</th>
+                                <th>AFB1+AFG1 (μg/kg)</th>
+                                <th>Aflatoxinas totais (μg/kg)</th>
+                            </tr>
+                            <tr>
+                                <td>Amendoim</td>
+                                <td>10</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>Milho</td>
+                                <td>10</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>Castanha-do-Brasil</td>
+                                <td>10</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>Figos secos</td>
+                                <td>5</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>Especiarias</td>
+                                <td>5</td>
+                                <td>10</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="formula-box">
+                        <strong>Margem de Exposição (MOE)</strong><br>
+                        MOE = BMDL10 / EDI<br>
+                        <small>MOE ≥ 10.000 = baixa preocupação</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Acrilamida -->
+        <div class="slide">
+            <div class="slide-number">12/60</div>
+            <h2>🔥 Acrilamida - Contaminante de Processo</h2>
+            <div class="two-column">
+                <div>
+                    <h3>⚗️ Formação</h3>
+                    <div class="flowchart">
+                        <div class="flow-box">Asparagina</div>
+                        <div class="flow-arrow">+</div>
+                        <div class="flow-box">Açúcares Redutores</div>
+                        <div class="flow-arrow">🌡️>120°C</div>
+                        <div class="flow-box">Acrilamida</div>
+                    </div>
+                    <p><strong>Reação de Maillard</strong> - escurecimento não enzimático</p>
+                    
+                    <h3>🎯 Alimentos Fonte</h3>
+                    <ul>
+                        <li><strong>Batata frita/chips:</strong> 150-4000 μg/kg</li>
+                        <li><strong>Pão torrado:</strong> 50-400 μg/kg</li>
+                        <li><strong>Café torrado:</strong> 200-500 μg/kg</li>
+                        <li><strong>Biscoitos:</strong> 50-1000 μg/kg</li>
+                        <li><strong>Cereais matinais:</strong> 100-800 μg/kg</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>⚠️ Toxicidade</h3>
+                    <ul>
+                        <li><strong>Neurotoxicidade:</strong> Neuropatia periférica</li>
+                        <li><strong>Carcinogenicidade:</strong> IARC Grupo 2A</li>
+                        <li><strong>Genotoxicidade:</strong> Adutos no DNA</li>
+                        <li><strong>BMDL10:</strong> 0,17 mg/kg pc/dia</li>
+                    </ul>
+                    
+                    <div class="chart">
+                        <h3>📊 Estratégias de Redução</h3>
+                        <div class="bar-chart">
+                            <div class="bar" style="height: 60%;">
+                                <div class="bar-value">40%</div>
+                                <div class="bar-label">Temp. ↓</div>
+                            </div>
+                            <div class="bar" style="height: 50%;">
+                                <div class="bar-value">50%</div>
+                                <div class="bar-label">Tempo ↓</div>
+                            </div>
+                            <div class="bar" style="height: 70%;">
+                                <div class="bar-value">30%</div>
+                                <div class="bar-label">pH ↑</div>
+                            </div>
+                            <div class="bar" style="height: 80%;">
+                                <div class="bar-value">20%</div>
+                                <div class="bar-label">Asparaginase</div>
+                            </div>
+                        </div>
+                        <p><small>Percentual de redução na formação</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: IN 160/2022 - Métodos Analíticos -->
+        <div class="slide">
+            <div class="slide-number">13/60</div>
+            <h2>🧪 IN 160/2022 - Métodos Analíticos</h2>
+            <div class="highlight-box">
+                <h3>🎯 Objetivo</h3>
+                <p>Estabelece <strong>métodos oficiais</strong> para determinação de contaminantes químicos em alimentos, garantindo <strong>uniformidade, confiabilidade e rastreabilidade</strong> dos resultados analíticos.</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>⚗️ Metais Pesados</h3>
+                    <ul>
+                        <li><strong>ICP-MS:</strong> Método de referência</li>
+                        <li><strong>ICP-OES:</strong> Alternativo</li>
+                        <li><strong>AAS:</strong> Método clássico</li>
+                        <li><strong>Digestão:</strong> Micro-ondas/bloco</li>
+                        <li><strong>LD/LQ:</strong> Especificados</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🍄 Micotoxinas</h3>
+                    <ul>
+                        <li><strong>LC-MS/MS:</strong> Padrão ouro</li>
+                        <li><strong>HPLC-FLD:</strong> Aflatoxinas</li>
+                        <li><strong>ELISA:</strong> Triagem</li>
+                        <li><strong>Extração:</strong> QuEChERS</li>
+                        <li><strong>Clean-up:</strong> IAC/SPE</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🔥 Contaminantes de Processo</h3>
+                    <ul>
+                        <li><strong>GC-MS:</strong> Acrilamida</li>
+                        <li><strong>LC-MS/MS:</strong> Alternativo</li>
+                        <li><strong>Derivatização:</strong> Brometo de potássio</li>
+                        <li><strong>Extração:</strong> Aquosa</li>
+                        <li><strong>Purificação:</strong> SPE</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>📊 Validação</h3>
+                    <ul>
+                        <li><strong>Precisão:</strong> RSD <15%</li>
+                        <li><strong>Exatidão:</strong> 80-120%</li>
+                        <li><strong>Linearidade:</strong> R² >0,99</li>
+                        <li><strong>Robustez:</strong> Parâmetros críticos</li>
+                        <li><strong>Incerteza:</strong> Estimativa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOCO 3: PADRÕES MICROBIOLÓGICOS -->
+        <!-- Slide 14: RDC 724/2022 - Visão Geral -->
+        <div class="slide">
+            <div class="slide-number">14/60</div>
+            <h1>🦠 Padrões Microbiológicos</h1>
+            <h2>RDC 724/2022 - Nova Era da Segurança Microbiológica</h2>
+            <div class="highlight-box">
+                <h3>🎯 Principais Inovações</h3>
+                <div class="two-column">
+                    <div>
+                        <ul>
+                            <li><strong>Baseada em risco:</strong> Análise científica</li>
+                            <li><strong>Harmonização internacional:</strong> Codex</li>
+                            <li><strong>Novos patógenos:</strong> <em>Cronobacter</em></li>
+                            <li><strong>Planos de amostragem:</strong> 2 e 3 classes</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><strong>Critérios flexíveis:</strong> m, M, n, c</li>
+                            <li><strong>Métodos atualizados:</strong> ISO/AOAC</li>
+                            <li><strong>Vida útil:</strong> Throughout shelf life</li>
+                            <li><strong>Rastreabilidade:</strong> Documentação</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flowchart">
+                <div class="flow-box">Identificação do Perigo</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Caracterização Dose-Resposta</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Avaliação da Exposição</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Caracterização do Risco</div>
+            </div>
+        </div>
+
+        <!-- Slide 15: Toxinas Microbianas -->
+        <div class="slide">
+            <div class="slide-number">15/60</div>
+            <h2>☠️ Toxinas Microbianas - Perigos Invisíveis</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🦠 Toxina Botulínica</h3>
+                    <ul>
+                        <li><strong>Produtor:</strong> <em>Clostridium botulinum</em></li>
+                        <li><strong>Mecanismo:</strong> Bloqueio neuromuscular</li>
+                        <li><strong>DL50:</strong> 1-3 ng/kg (mais potente)</li>
+                        <li><strong>Alimentos:</strong> Conservas caseiras</li>
+                        <li><strong>Prevenção:</strong> pH <4,6, aw <0,94</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🌡️ Enterotoxina Estafilocócica</h3>
+                    <ul>
+                        <li><strong>Produtor:</strong> <em>S. aureus</em></li>
+                        <li><strong>Termorresistente:</strong> 100°C/30min</li>
+                        <li><strong>Dose infecciosa:</strong> 1-5 μg</li>
+                        <li><strong>Alimentos:</strong> Laticínios, carnes</li>
+                        <li><strong>Controle:</strong> Temperatura <7°C</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🌊 Toxinas Marinhas</h3>
+                    <ul>
+                        <li><strong>Tetrodotoxina:</strong> Peixe-baiacu</li>
+                        <li><strong>Ciguatoxina:</strong> Peixes tropicais</li>
+                        <li><strong>Saxitoxina:</strong> Moluscos (PSP)</li>
+                        <li><strong>Ácido domóico:</strong> ASP</li>
+                        <li><strong>Brevetoxinas:</strong> NSP</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🍄 Toxinas Fúngicas</h3>
+                    <ul>
+                        <li><strong>Amatoxinas:</strong> <em>Amanita</em> spp</li>
+                        <li><strong>Muscarina:</strong> Síndrome colinérgica</li>
+                        <li><strong>Psilocibina:</strong> Alucinógena</li>
+                        <li><strong>Giromitrina:</strong> <em>Gyromitra</em></li>
+                        <li><strong>Orellanina:</strong> Nefrotóxica</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Planos de Amostragem -->
+        <div class="slide">
+            <div class="slide-number">16/60</div>
+            <h2>📊 Planos de Amostragem Microbiológica</h2>
+            <div class="two-column">
+                <div>
+                    <h3>📋 Plano de 2 Classes</h3>
+                    <div class="formula-box">
+                        <strong>n, c, m</strong><br>
+                        n = número de unidades amostradas<br>
+                        c = número máximo de unidades entre m e M<br>
+                        m = limite microbiológico
+                    </div>
+                    
+                    <h3>🎯 Aplicação</h3>
+                    <ul>
+                        <li>Patógenos em alimentos RTE</li>
+                        <li>Indicadores de higiene</li>
+                        <li>Situação: Aceitável/Inaceitável</li>
+                    </ul>
+                    
+                    <h3>📈 Exemplo: <em>Salmonella</em></h3>
+                    <table>
+                        <tr><th>n</th><th>c</th><th>m</th></tr>
+                        <tr><td>5</td><td>0</td><td>Aus/25g</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>📋 Plano de 3 Classes</h3>
+                    <div class="formula-box">
+                        <strong>n, c, m, M</strong><br>
+                        n = número de unidades amostradas<br>
+                        c = número máximo de unidades entre m e M<br>
+                        m = limite satisfatório<br>
+                        M = limite máximo aceitável
+                    </div>
+                    
+                    <h3>🎯 Aplicação</h3>
+                    <ul>
+                        <li>Indicadores de qualidade</li>
+                        <li>Patógenos em MP</li>
+                        <li>Situação: Satisfatório/Aceitável/Inaceitável</li>
+                    </ul>
+                    
+                    <h3>📈 Exemplo: <em>E. coli</em></h3>
+                    <table>
+                        <tr><th>n</th><th>c</th><th>m</th><th>M</th></tr>
+                        <tr><td>5</td><td>2</td><td>10</td><td>100</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="highlight-box">
+                <p><strong>Interpretação:</strong> Todas as unidades ≤m = Satisfatório | c unidades entre m-M = Aceitável | >c unidades entre m-M ou qualquer >M = Inaceitável</p>
+            </div>
+        </div>
+
+        <!-- BLOCO 4: RESÍDUOS DE AGROTÓXICOS -->
+        <!-- Slide 17: Sistema LMR no Brasil -->
+        <div class="slide">
+            <div class="slide-number">17/60</div>
+            <h1>🌱 Resíduos de Agrotóxicos</h1>
+            <h2>Sistema LMR - Proteção da Saúde Pública</h2>
+            <div class="flowchart">
+                <div class="flow-box">🔬 Estudos Toxicológicos</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">📊 ADI/ARfD</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">🌾 Ensaios de Campo</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">⚖️ LMR</div>
+            </div>
+            
+            <div class="two-column">
+                <div>
+                    <h3>🎯 Conceitos Fundamentais</h3>
+                    <ul>
+                        <li><strong>LMR:</strong> Limite Máximo de Resíduo</li>
+                        <li><strong>ADI:</strong> Ingestão Diária Aceitável</li>
+                        <li><strong>ARfD:</strong> Dose de Referência Aguda</li>
+                        <li><strong>GAP:</strong> Boas Práticas Agrícolas</li>
+                        <li><strong>STMR:</strong> Resíduo Mediano Supervisionado</li>
+                    </ul>
+                    
+                    <div class="formula-box">
+                        <strong>LMR = Maior resíduo em GAP</strong><br>
+                        <small>Considerando fator de segurança</small>
+                    </div>
+                </div>
+                <div>
+                    <h3>📋 Marco Legal</h3>
+                    <ul>
+                        <li><strong>Lei 7.802/89:</strong> Lei dos Agrotóxicos</li>
+                        <li><strong>Decreto 4.074/02:</strong> Regulamentação</li>
+                        <li><strong>RDC 296/19:</strong> Procedimentos ANVISA</li>
+                        <li><strong>IN MAPA:</strong> Monografias</li>
+                    </ul>
+                    
+                    <h3>🏛️ Competências</h3>
+                    <ul>
+                        <li><strong>MAPA:</strong> Eficácia agronômica</li>
+                        <li><strong>ANVISA:</strong> Avaliação toxicológica</li>
+                        <li><strong>IBAMA:</strong> Avaliação ambiental</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: PARA - Programa de Monitoramento -->
+        <div class="slide">
+            <div class="slide-number">18/60</div>
+            <h2>📊 PARA - Monitoramento Contínuo</h2>
+            <div class="highlight-box">
+                <h3>🎯 Programa de Análise de Resíduos de Agrotóxicos</h3>
+                <p>Monitora <strong>sistematicamente</strong> resíduos de agrotóxicos em alimentos <strong>in natura</strong> consumidos no Brasil, gerando dados para <strong>avaliação de risco</strong> e <strong>ações regulatórias</strong>.</p>
+            </div>
+            
+            <div class="two-column">
+                <div>
+                    <h3>📈 Evolução do Programa</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <strong>2001-2007:</strong> Fase inicial (9 alimentos)
+                        </div>
+                        <div class="timeline-item">
+                            <strong>2008-2015:</strong> Ampliação (20 alimentos)
+                        </div>
+                        <div class="timeline-item">
+                            <strong>2017-2019:</strong> Modernização metodológica
+                        </div>
+                        <div class="timeline-item">
+                            <strong>2019-atual:</strong> Ciclo quadrienal (27 alimentos)
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>🥬 Alimentos Monitorados (2019-2022)</h3>
+                    <table>
+                        <tr>
+                            <th>Grupo</th>
+                            <th>Alimentos</th>
+                        </tr>
+                        <tr>
+                            <td>Frutas</td>
+                            <td>Abacaxi, goiaba, laranja, maçã, mamão, manga, morango, uva</td>
+                        </tr>
+                        <tr>
+                            <td>Hortaliças</td>
+                            <td>Abobrinha, alface, batata, beterraba, brócolis, cenoura, couve, pepino, pimentão, tomate</td>
+                        </tr>
+                        <tr>
+                            <td>Cereais</td>
+                            <td>Arroz, feijão</td>
+                        </tr>
+                        <tr>
+                            <td>Outros</td>
+                            <td>Açaí, banana, caju, cebola, inhame, mandioca, quiabo</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="chart">
+                <h3>📊 Resultados 2019-2022</h3>
+                <div class="bar-chart">
+                    <div class="bar" style="height: 77%;">
+                        <div class="bar-value">77%</div>
+                        <div class="bar-label">Satisfatórias</div>
+                    </div>
+                    <div class="bar" style="height: 23%;">
+                        <div class="bar-value">23%</div>
+                        <div class="bar-label">Insatisfatórias</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Casos Críticos de Agrotóxicos -->
+        <div class="slide">
+            <div class="slide-number">19/60</div>
+            <h2>⚠️ Casos Críticos - Resíduos de Agrotóxicos</h2>
+            <div class="grid">
+                <div class="card problem">
+                    <h3>🍓 Morango - Campeão de Resíduos</h3>
+                    <ul>
+                        <li><strong>Irregularidade:</strong> 67% das amostras</li>
+                        <li><strong>Principais IA:</strong> Carbendazim, tebuconazol</li>
+                        <li><strong>Problema:</strong> Múltiplos resíduos</li>
+                        <li><strong>Causa:</strong> Alto uso de fungicidas</li>
+                    </ul>
+                </div>
+                <div class="card analysis">
+                    <h3>🌶️ Pimentão - Uso Inadequado</h3>
+                    <ul>
+                        <li><strong>Irregularidade:</strong> 57% das amostras</li>
+                        <li><strong>Principais IA:</strong> Metamidofós, acefato</li>
+                        <li><strong>Problema:</strong> IA não registrado</li>
+                        <li><strong>Risco:</strong> Neurotoxicidade</li>
+                    </ul>
+                </div>
+                <div class="card decision">
+                    <h3>🥬 Alface - Contaminação Sistêmica</h3>
+                    <ul>
+                        <li><strong>Irregularidade:</strong> 41% das amostras</li>
+                        <li><strong>Principais IA:</strong> Abamectina, clorpirifós</li>
+                        <li><strong>Problema:</strong> Absorção foliar</li>
+                        <li><strong>Solução:</strong> Higienização insuficiente</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3>🎯 Estratégias de Mitigação</h3>
+                <div class="two-column">
+                    <div>
+                        <h4>🚫 Ações Regulatórias</h4>
+                        <ul>
+                            <li>Reavaliação de moléculas críticas</li>
+                            <li>Restrição de uso em culturas sensíveis</li>
+                            <li>Harmonização de LMR</li>
+                            <li>Intensificação da fiscalização</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>🎓 Ações Educativas</h4>
+                        <ul>
+                            <li>Capacitação de produtores</li>
+                            <li>Promoção de MIP</li>
+                            <li>Incentivo à agricultura orgânica</li>
+                            <li>Orientação ao consumidor</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOCO 5: ADITIVOS ALIMENTARES -->
+        <!-- Slide 20: RDC 778/2023 - Aditivos Alimentares -->
+        <div class="slide">
+            <div class="slide-number">20/60</div>
+            <h1>🧪 Aditivos Alimentares</h1>
+            <h2>RDC 778/2023 - Modernização Regulatória</h2>
+            <div class="highlight-box">
+                <h3>🎯 Principais Inovações</h3>
+                <div class="two-column">
+                    <div>
+                        <ul>
+                            <li><strong>Harmonização:</strong> Padrões internacionais</li>
+                            <li><strong>Simplificação:</strong> Redução burocrática</li>
+                            <li><strong>Categorização:</strong> Sistema de classificação funcional</li>
+                            <li><strong>Flexibilidade:</strong> Quantum satis</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><strong>Segurança:</strong> Avaliação baseada em risco</li>
+                            <li><strong>Transparência:</strong> Lista positiva</li>
+                            <li><strong>Atualização:</strong> Revisão contínua</li>
+                            <li><strong>Rastreabilidade:</strong> Identificação obrigatória</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flowchart">
+                <div class="flow-box">Petição</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Avaliação Técnica</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Consulta Pública</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box">Aprovação</div>
+            </div>
+        </div>
+
+        <!-- Slide 21: Classificação Funcional de Aditivos -->
+        <div class="slide">
+            <div class="slide-number">21/60</div>
+            <h2>🏷️ Classificação Funcional dos Aditivos</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🛡️ Conservantes</h3>
+                    <ul>
+                        <li><strong>Função:</strong> Inibir deterioração</li>
+                        <li><strong>Exemplos:</strong> Ácido sórbico, benzoatos</li>
+                        <li><strong>Mecanismo:</strong> Antimicrobiano</li>
+                        <li><strong>Limites:</strong> IDA específica</li>
+                        <li><strong>Preocupações:</strong> Resistência, alergia</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🎨 Corantes</h3>
+                    <ul>
+                        <li><strong>Naturais:</strong> Antocianinas, carotenoides</li>
+                        <li><strong>Artificiais:</strong> Tartrazina, eritrosina</li>
+                        <li><strong>Regulamentação:</strong> Lista positiva</li>
+                        <li><strong>Rotulagem:</strong> Obrigatória</li>
+                        <li><strong>Alertas:</strong> Hiperatividade infantil</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🍯 Edulcorantes</h3>
+                    <ul>
+                        <li><strong>Nutritivos:</strong> Sorbitol, xilitol</li>
+                        <li><strong>Não-nutritivos:</strong> Aspartame, sucralose</li>
+                        <li><strong>IDA:</strong> mg/kg peso corporal</li>
+                        <li><strong>Rotulagem:</strong> Fenilcetonúricos</li>
+                        <li><strong>Tendência:</strong> Stevia, monk fruit</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>⚗️ Antioxidantes</h3>
+                    <ul>
+                        <li><strong>Sintéticos:</strong> BHA, BHT, TBHQ</li>
+                        <li><strong>Naturais:</strong> Tocoferóis, ác. ascórbico</li>
+                        <li><strong>Função:</strong> Prevenir oxidação</li>
+                        <li><strong>Sinergismo:</strong> Combinações</li>
+                        <li><strong>Limites:</strong> Baseados em estudos</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🌊 Emulsificantes</h3>
+                    <ul>
+                        <li><strong>Lecitinas:</strong> Soja, girassol</li>
+                        <li><strong>Mono/diglicerídeos:</strong> Estabilização</li>
+                        <li><strong>Polissorbatos:</strong> Tween series</li>
+                        <li><strong>Função:</strong> Interface óleo-água</li>
+                        <li><strong>Segurança:</strong> GRAS status</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🏗️ Espessantes</h3>
+                    <ul>
+                        <li><strong>Gomas:</strong> Xantana, guar, arábica</li>
+                        <li><strong>Amidos:</strong> Modificados</li>
+                        <li><strong>Carragenas:</strong> Algas marinhas</li>
+                        <li><strong>Função:</strong> Textura, viscosidade</li>
+                        <li><strong>Doses:</strong> Quantum satis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 22: IN 211/2023 - Lista de Aditivos -->
+        <div class="slide">
+            <div class="slide-number">22/60</div>
+            <h2>📋 IN 211/2023 - Lista de Aditivos Autorizados</h2>
+            <div class="two-column">
+                <div>
+                    <h3>📊 Estatísticas da Lista</h3>
+                    <table>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Quantidade</th>
+                        </tr>
+                        <tr>
+                            <td>Conservantes</td>
+                            <td>47</td>
+                        </tr>
+                        <tr>
+                            <td>Antioxidantes</td>
+                            <td>28</td>
+                        </tr>
+                        <tr>
+                            <td>Corantes</td>
+                            <td>65</td>
+                        </tr>
+                        <tr>
+                            <td>Edulcorantes</td>
+                            <td>23</td>
+                        </tr>
+                        <tr>
+                            <td>Aromatizantes</td>
+                            <td>2800+</td>
+                        </tr>
+                        <tr>
+                            <td>Emulsificantes</td>
+                            <td>89</td>
+                        </tr>
+                        <tr>
+                            <td>Espessantes</td>
+                            <td>54</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <h3>⚠️ Aditivos com Restrições</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <strong>Tartrazina (INS 102)</strong>
+                            <p>Alerta: "Pode causar reações alérgicas"</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Aspartame (INS 951)</strong>
+                            <p>Alerta: "Fenilcetonúricos: contém fenilalanina"</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Sulfitos (INS 220-228)</strong>
+                            <p>Alerta: "Contém sulfitos"</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>BHA/BHT</strong>
+                            <p>Limites reduzidos por precaução</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="formula-box">
+                <strong>Cálculo de EDI para Aditivos</strong><br>
+                EDI = (C × IR) / BW<br>
+                <small>Comparar com IDA: EDI ≤ IDA = Seguro</small>
+            </div>
+        </div>
+
+        <!-- Slide 23: RDC 779/2023 - Coadjuvantes -->
+        <div class="slide">
+            <div class="slide-number">23/60</div>
+            <h2>⚙️ RDC 779/2023 - Coadjuvantes de Tecnologia</h2>
+            <div class="highlight-box">
+                <h3>🎯 Definição e Princípios</h3>
+                <p><strong>Coadjuvantes de tecnologia</strong> são substâncias utilizadas durante o processamento, mas que <strong>não devem estar presentes</strong> no produto final ou estar em <strong>quantidades tecnicamente insignificantes</strong>.</p>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>🧹 Agentes de Limpeza</h3>
+                    <ul>
+                        <li><strong>Detergentes:</strong> Remoção de gorduras</li>
+                        <li><strong>Sanitizantes:</strong> Cloro, quaternários</li>
+                        <li><strong>Álcalis:</strong> Soda cáustica</li>
+                        <li><strong>Ácidos:</strong> Nítrico, fosfórico</li>
+                        <li><strong>Resíduos:</strong> Limites máximos</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🔄 Auxiliares de Processo</h3>
+                    <ul>
+                        <li><strong>Enzimas:</strong> Hidrólise, clarificação</li>
+                        <li><strong>Solventes:</strong> Extração</li>
+                        <li><strong>Agentes filtrantes:</strong> Terra diatomácea</li>
+                        <li><strong>Catalisadores:</strong> Hidrogenação</li>
+                        <li><strong>Gases:</strong> Atmosfera modificada</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🏷️ Requisitos</h3>
+                    <ul>
+                        <li><strong>Pureza:</strong> Grau alimentício</li>
+                        <li><strong>Funcionalidade:</strong> Justificada</li>
+                        <li><strong>Residualidade:</strong> ALARA</li>
+                        <li><strong>Rotulagem:</strong> Lista de ingredientes</li>
+                        <li><strong>Rastreabilidade:</strong> Documentação</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOCO 6: MATERIAIS EM CONTATO -->
+        <!-- Slide 24: RDC 51/2010 e RDC 854/2024 -->
+        <div class="slide">
+            <div class="slide-number">24/60</div>
+            <h1>📦 Materiais em Contato com Alimentos</h1>
+            <h2>Marco Regulatório Brasileiro</h2>
+            <div class="two-column">
+                <div>
+                    <h3>📋 RDC 51/2010 - Disposições Gerais</h3>
+                    <ul>
+                        <li><strong>Princípio da inércia:</strong> Não alterar o alimento</li>
+                        <li><strong>Migração total:</strong> ≤50 mg/dm² ou 8 mg/dm³</li>
+                        <li><strong>Composição conhecida:</strong> Lista positiva</li>
+                        <li><strong>BPF obrigatórias:</strong> ISO 15378</li>
+                        <li><strong>Declaração conformidade:</strong> Rastreabilidade</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🔬 RDC 854/2024 - Materiais Plásticos</h3>
+                    <ul>
+                        <li><strong>Lista União Europeia:</strong> Harmonização</li>
+                        <li><strong>LME específicos:</strong> Por substância</li>
+                        <li><strong>Simulantes alimentares:</strong> A, B, C, D1, D2</li>
+                        <li><strong>Condições de ensaio:</strong> Tempo/temperatura</li>
+                        <li><strong>NIAS:</strong> Controle de não-intencionais</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="chart">
+                <h3>📊 Tipos de Migração</h3>
+                <div class="flowchart">
+                    <div class="flow-box">📦 Embalagem</div>
+                    <div class="flow-arrow">⚡</div>
+                    <div class="flow-box">🔄 Migração</div>
+                    <div class="flow-arrow">⚡</div>
+                    <div class="flow-box">🍯 Alimento</div>
+                </div>
+                
+                <div class="grid" style="margin-top: 20px;">
+                    <div class="card">
+                        <h4>📏 Migração Total</h4>
+                        <p>Quantidade total de substâncias transferidas</p>
+                    </div>
+                    <div class="card">
+                        <h4>🎯 Migração Específica</h4>
+                        <p>Substâncias individuais com LME</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 25: Tipos de Materiais -->
+        <div class="slide">
+            <div class="slide-number">25/60</div>
+            <h2>🧪 Tipos de Materiais e Riscos</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🛢️ Plásticos</h3>
+                    <ul>
+                        <li><strong>PE:</strong> Inerte, baixa migração</li>
+                        <li><strong>PP:</strong> Resistente ao calor</li>
+                        <li><strong>PS:</strong> Estireno (preocupação)</li>
+                        <li><strong>PC:</strong> BPA migração</li>
+                        <li><strong>PVC:</strong> Ftalatos, chumbo</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>📄 Papel e Cartão</h3>
+                    <ul>
+                        <li><strong>Papel reciclado:</strong> Contaminantes</li>
+                        <li><strong>Tintas:</strong> Metais pesados</li>
+                        <li><strong>Adesivos:</strong> Formaldeído</li>
+                        <li><strong>Branqueadores:</strong> Clorofórmio</li>
+                        <li><strong>Barreira:</strong> PE, cera</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🍶 Vidro</h3>
+                    <ul>
+                        <li><strong>Vidro comum:</strong> Chumbo, cádmio</li>
+                        <li><strong>Cristal:</strong> Alto teor de chumbo</li>
+                        <li><strong>Decoração:</strong> Metais na superfície</li>
+                        <li><strong>Vantagem:</strong> Quimicamente inerte</li>
+                        <li><strong>Migração:</strong> Muito baixa</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🥫 Metais</h3>
+                    <ul>
+                        <li><strong>Latas:</strong> BPA no verniz</li>
+                        <li><strong>Alumínio:</strong> Migração em ácidos</li>
+                        <li><strong>Aço inox:</strong> Níquel, cromo</li>
+                        <li><strong>Revestimentos:</strong> Polímeros</li>
+                        <li><strong>Soldas:</strong> Chumbo (proibido)</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🍽️ Cerâmica</h3>
+                    <ul>
+                        <li><strong>Esmaltes:</strong> Chumbo, cádmio</li>
+                        <li><strong>Decorações:</strong> Metais pesados</li>
+                        <li><strong>Teste de migração:</strong> Ácido acético</li>
+                        <li><strong>Limites:</strong> Rigorosos para chumbo</li>
+                        <li><strong>Certificação:</strong> Obrigatória</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🌱 Materiais Naturais</h3>
+                    <ul>
+                        <li><strong>Madeira:</strong> Compostos fenólicos</li>
+                        <li><strong>Cortiça:</strong> TCA (off-flavor)</li>
+                        <li><strong>Tratamentos:</strong> Conservantes</li>
+                        <li><strong>Ceras naturais:</strong> Aceitáveis</li>
+                        <li><strong>Fibras:</strong> Bagaço, bambu</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 26: NIAS - Substâncias Não Intencionais -->
+        <div class="slide">
+            <div class="slide-number">26/60</div>
+            <h2>⚠️ NIAS - Substâncias Não Intencionalmente Adicionadas</h2>
+            <div class="highlight-box">
+                <h3>🎯 Definição e Origem</h3>
+                <p>NIAS são substâncias presentes nos materiais que <strong>não foram intencionalmente adicionadas</strong>, resultantes de <strong>reações, degradação ou impurezas</strong> durante produção, processamento ou uso.</p>
+            </div>
+            
+            <div class="two-column">
+                <div>
+                    <h3>🔬 Fontes de NIAS</h3>
+                    <ul>
+                        <li><strong>Impurezas:</strong> Matérias-primas</li>
+                        <li><strong>Produtos de reação:</strong> Síntese</li>
+                        <li><strong>Degradação:</strong> Processamento</li>
+                        <li><strong>Contaminação:</strong> Cross-contamination</li>
+                        <li><strong>Aditivos:</strong> Decomposição</li>
+                    </ul>
+                    
+                    <h3>📊 Exemplos Críticos</h3>
+                    <ul>
+                        <li><strong>Oligômeros:</strong> Em poliésteres</li>
+                        <li><strong>Formaldeído:</strong> Em melamina</li>
+                        <li><strong>Acetaldeído:</strong> Em PET</li>
+                        <li><strong>Benzofenona:</strong> Em tintas</li>
+                        <li><strong>Ftalatos:</strong> Plastificantes</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🎯 Estratégias de Controle</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <strong>1. Identificação</strong>
+                            <p>GC-MS, LC-MS/MS não target</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>2. Quantificação</strong>
+                            <p>Métodos validados específicos</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>3. Avaliação</strong>
+                            <p>TTC (Threshold of Toxicological Concern)</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>4. Controle</strong>
+                            <p>BPF, especificações</p>
+                        </div>
+                    </div>
+                    
+                    <div class="formula-box">
+                        <strong>Limites TTC</strong><br>
+                        Cramer Class I: 1800 μg/pessoa/dia<br>
+                        Cramer Class II: 540 μg/pessoa/dia<br>
+                        Cramer Class III: 90 μg/pessoa/dia
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOCO 7: ESTUDOS DE CASO -->
+        <!-- Slide 27: Metodologia Problema-Análise-Decisão -->
+        <div class="slide">
+            <div class="slide-number">27/60</div>
+            <h1>📖 Estudos de Caso</h1>
+            <h2>Metodologia Problema → Análise → Decisão</h2>
+            <div class="flowchart">
+                <div class="flow-box problem">🚨 PROBLEMA</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box analysis">🔍 ANÁLISE</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box decision">⚖️ DECISÃO</div>
+            </div>
+            
+            <div class="grid">
+                <div class="card problem">
+                    <h3>🚨 Identificação do Problema</h3>
+                    <ul>
+                        <li><strong>Fonte:</strong> Monitoramento, denúncia, surto</li>
+                        <li><strong>Caracterização:</strong> Gravidade, extensão</li>
+                        <li><strong>Urgência:</strong> Risco iminente vs. crônico</li>
+                        <li><strong>Stakeholders:</strong> Quem está envolvido</li>
+                        <li><strong>Recursos:</strong> Capacidade de resposta</li>
+                    </ul>
+                </div>
+                <div class="card analysis">
+                    <h3>🔍 Análise Técnico-Científica</h3>
+                    <ul>
+                        <li><strong>Dados laboratoriais:</strong> Validação, incerteza</li>
+                        <li><strong>Avaliação de exposição:</strong> EDI, cenários</li>
+                        <li><strong>Caracterização do risco:</strong> MOE, HQ</li>
+                        <li><strong>Literatura científica:</strong> Evidências</li>
+                        <li><strong>Consulta experts:</strong> Pareceres</li>
+                    </ul>
+                </div>
+                <div class="card decision">
+                    <h3>⚖️ Tomada de Decisão</h3>
+                    <ul>
+                        <li><strong>Medidas imediatas:</strong> Recolhimento, interdição</li>
+                        <li><strong>Comunicação:</strong> Alerta, orientações</li>
+                        <li><strong>Medidas regulatórias:</strong> Revisão de normas</li>
+                        <li><strong>Monitoramento:</strong> Acompanhamento</li>
+                        <li><strong>Avaliação:</strong> Eficácia das medidas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 28: Caso 1 - Melamina no Leite -->
+        <div class="slide">
+            <div class="slide-number">28/60</div>
+            <h2>🥛 Caso 1: Crise da Melamina (2008)</h2>
+            <div class="case-study problem">
+                <h3>🚨 PROBLEMA</h3>
+                <p><strong>Contexto:</strong> Detecção de melamina em fórmulas infantis chinesas, causando pedras nos rins e mortes de bebês.</p>
+                <ul>
+                    <li><strong>Adulteração:</strong> Adição intencional para elevar teor proteico aparente</li>
+                    <li><strong>Escala:</strong> 300.000 crianças afetadas, 6 mortes</li>
+                    <li><strong>Produtos:</strong> Leite em pó, fórmulas infantis</li>
+                    <li><strong>Impacto:</strong> Crise de confiança global</li>
+                </ul>
+            </div>
+            
+            <div class="case-study analysis">
+                <h3>🔍 ANÁLISE</h3>
+                <ul>
+                    <li><strong>Toxicidade:</strong> Cristalúria, insuficiência renal</li>
+                    <li><strong>TDI:</strong> 0,2 mg/kg pc/dia (FAO/WHO)</li>
+                    <li><strong>Métodos analíticos:</strong> LC-MS/MS desenvolvimento</li>
+                    <li><strong>Limite de detecção:</strong> 2,5 mg/kg</li>
+                    <li><strong>Exposição crítica:</strong> Lactentes (alta vulnerabilidade)</li>
+                </ul>
+            </div>
+            
+            <div class="case-study decision">
+                <h3>⚖️ DECISÃO</h3>
+                <ul>
+                    <li><strong>Brasil:</strong> Proibição de importação de lácteos chineses</li>
+                    <li><strong>Codex:</strong> LMR 1 mg/kg em fórmulas infantis</li>
+                    <li><strong>Monitoramento:</strong> Inclusão no PNCRC</li>
+                    <li><strong>Regulamentação:</strong> RDC 722/2022 - 2,5 mg/kg</li>
+                    <li><strong>Impacto:</strong> Fortalecimento da vigilância global</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 29: Caso 2 - Benzopireno em Óleos -->
+        <div class="slide">
+            <div class="slide-number">29/60</div>
+            <h2>🛢️ Caso 2: Benzopireno em Óleos Vegetais</h2>
+            <div class="case-study problem">
+                <h3>🚨 PROBLEMA</h3>
+                <p><strong>Contexto:</strong> Detecção de hidrocarbonetos aromáticos policíclicos (HAPs) em óleos vegetais brasileiros acima dos limites europeus.</p>
+                <ul>
+                    <li><strong>Contaminante:</strong> Benzo(a)pireno - carcinógeno classe 1</li>
+                    <li><strong>Fonte:</strong> Secagem inadequada de sementes</li>
+                    <li><strong>Produtos afetados:</strong> Óleo de girassol, canola</li>
+                    <li><strong>Impacto comercial:</strong> Rejeição de exportações</li>
+                </ul>
+            </div>
+            
+            <div class="case-study analysis">
+                <h3>🔍 ANÁLISE</h3>
+                <ul>
+                    <li><strong>Formação:</strong> Combustão incompleta na secagem</li>
+                    <li><strong>BMDL10:</strong> 0,49 mg/kg pc/dia (câncer pulmão)</li>
+                    <li><strong>Exposição:</strong> 12-15 mL óleo/pessoa/dia</li>
+                    <li><strong>MOE:</strong> Abaixo de 10.000 (preocupação)</li>
+                    <li><strong>Limite UE:</strong> 2 μg/kg vs Brasil: 5 μg/kg</li>
+                </ul>
+            </div>
+            
+            <div class="case-study decision">
+                <h3>⚖️ DECISÃO</h3>
+                <ul>
+                    <li><strong>RDC 722/2022:</strong> Harmonização com UE (2 μg/kg)</li>
+                    <li><strong>Capacitação:</strong> Indústria em BPF de secagem</li>
+                    <li><strong>Monitoramento:</strong> Plano de vigilância</li>
+                    <li><strong>Métodos:</strong> GC-MS/MS padronizado</li>
+                    <li><strong>Resultado:</strong> Redução 80% nos níveis</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 30: Caso 3 - Aflatoxinas em Castanha-do-Brasil -->
+        <div class="slide">
+            <div class="slide-number">30/60</div>
+            <h2>🌰 Caso 3: Aflatoxinas na Castanha-do-Brasil</h2>
+            <div class="case-study problem">
+                <h3>🚨 PROBLEMA</h3>
+                <p><strong>Contexto:</strong> União Europeia rejeitou 67% dos lotes de castanha-do-Brasil entre 2009-2018 por excesso de aflatoxinas.</p>
+                <ul>
+                    <li><strong>Produto estratégico:</strong> 98% da produção mundial</li>
+                    <li><strong>Limite UE:</strong> 10 μg/kg vs Brasil: 20 μg/kg (época)</li>
+                    <li><strong>Prejuízo:</strong> US$ 20 milhões/ano</li>
+                    <li><strong>Comunidades afetadas:</strong> Extrativistas da Amazônia</li>
+                </ul>
+            </div>
+            
+            <div class="case-study analysis">
+                <h3>🔍 ANÁLISE</h3>
+                <ul>
+                    <li><strong>Fatores críticos:</strong> Coleta no chão, umidade alta</li>
+                    <li><strong>Sazonalidade:</strong> Época chuvosa = maior contaminação</li>
+                    <li><strong>Processamento:</strong> Secagem inadequada</li>
+                    <li><strong>Variabilidade:</strong> CVs >100% entre lotes</li>
+                    <li><strong>Risco à saúde:</strong> MOE <10.000 em consumidores regulares</li>
+                </ul>
+            </div>
+            
+            <div class="case-study decision">
+                <h3>⚖️ DECISÃO</h3>
+                <ul>
+                    <li><strong>Harmonização:</strong> RDC 722/2022 - limite 10 μg/kg</li>
+                    <li><strong>Projeto SEBRAE:</strong> Boas práticas de coleta</li>
+                    <li><strong>Tecnologia:</strong> Secadores solares</li>
+                    <li><strong>Certificação:</strong> Orgânica e Fair Trade</li>
+                    <li><strong>Resultado:</strong> Redução de rejeições para 23%</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 31: Caso 4 - Acrilamida em Alimentos Processados -->
+        <div class="slide">
+            <div class="slide-number">31/60</div>
+            <h2>🍟 Caso 4: Acrilamida em Batatas Fritas</h2>
+            <div class="case-study problem">
+                <h3>🚨 PROBLEMA</h3>
+                <p><strong>Contexto:</strong> Descoberta em 2002 de que acrilamida se forma naturalmente em alimentos processados termicamente.</p>
+                <ul>
+                    <li><strong>Fonte:</strong> Reação de Maillard (asparagina + açúcares)</li>
+                    <li><strong>Ubiquidade:</strong> Presente em alimentos básicos</li>
+                    <li><strong>Carcinogenicidade:</strong> IARC Grupo 2A</li>
+                    <li><strong>Pânico:</strong> Mídia comparou a fumar cigarros</li>
+                </ul>
+            </div>
+            
+            <div class="case-study analysis">
+                <h3>🔍 ANÁLISE</h3>
+                <ul>
+                    <li><strong>Exposição média:</strong> 0,4-0,9 μg/kg pc/dia</li>
+                    <li><strong>BMDL10:</strong> 170 μg/kg pc/dia (tumores)</li>
+                    <li><strong>MOE:</strong> 300-425 (preocupação para saúde pública)</li>
+                    <li><strong>Populações vulneráveis:</strong> Crianças (maior exposição)</li>
+                    <li><strong>Principais fontes:</strong> Café (34%), batata frita (16%)</li>
+                </ul>
+            </div>
+            
+            <div class="case-study decision">
+                <h3>⚖️ DECISÃO</h3>
+                <ul>
+                    <li><strong>Estratégia ALARA:</strong> Reduzir o possível</li>
+                    <li><strong>Orientações FAO/WHO:</strong> Código de práticas</li>
+                    <li><strong>Indústria:</strong> Reformulação de produtos</li>
+                    <li><strong>Regulamentação UE:</strong> Níveis de referência (2018)</li>
+                    <li><strong>Brasil:</strong> Monitoramento e orientações</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- BLOCO 8: WORKSHOP PRÁTICO -->
+        <!-- Slide 32: Introdução ao Workshop -->
+        <div class="slide">
+            <div class="slide-number">32/60</div>
+            <h1>🎯 Workshop de Avaliação de Risco</h1>
+            <h2>Cálculos Práticos em Toxicologia de Alimentos</h2>
+            <div class="workshop-section">
+                <h3>📚 Parâmetros Toxicológicos Fundamentais</h3>
+                <div class="grid">
+                    <div class="card">
+                        <h4>🎯 TDI - Tolerable Daily Intake</h4>
+                        <p><strong>Definição:</strong> Quantidade máxima de uma substância que pode ser ingerida diariamente durante toda a vida sem risco à saúde.</p>
+                        <p><strong>Unidade:</strong> mg/kg peso corporal/dia</p>
+                    </div>
+                    <div class="card">
+                        <h4>⚡ ARfD - Acute Reference Dose</h4>
+                        <p><strong>Definição:</strong> Quantidade máxima que pode ser ingerida em 24 horas sem efeitos adversos à saúde.</p>
+                        <p><strong>Unidade:</strong> mg/kg peso corporal</p>
+                    </div>
+                    <div class="card">
+                        <h4>📊 EDI - Estimated Daily Intake</h4>
+                        <p><strong>Definição:</strong> Estimativa da ingestão diária de uma substância pela população.</p>
+                        <p><strong>Cálculo:</strong> (Concentração × Consumo) ÷ Peso corporal</p>
+                    </div>
+                    <div class="card">
+                        <h4>⚖️ MOE - Margin of Exposure</h4>
+                        <p><strong>Definição:</strong> Razão entre dose crítica e exposição estimada.</p>
+                        <p><strong>Interpretação:</strong> MOE ≥ 10.000 = baixa preocupação</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 33: Exercício 1 - Cálculo de TDI -->
+        <div class="slide">
+            <div class="slide-number">33/60</div>
+            <h2>🧮 Exercício 1: Derivação de TDI</h2>
+            <div class="workshop-section">
+                <h3>📋 Cenário</h3>
+                <p>Um estudo de 90 dias em ratos mostrou que o aditivo X não causa efeitos adversos observáveis (NOAEL) até 5 mg/kg pc/dia. Em doses de 15 mg/kg pc/dia foram observados efeitos hepatotóxicos leves.</p>
+                
+                <div class="two-column">
+                    <div>
+                        <h3>📊 Dados do Estudo</h3>
+                        <ul>
+                            <li><strong>NOAEL:</strong> 5 mg/kg pc/dia</li>
+                            <li><strong>LOAEL:</strong> 15 mg/kg pc/dia</li>
+                            <li><strong>Duração:</strong> 90 dias (subcrônico)</li>
+                            <li><strong>Espécie:</strong> Rato</li>
+                            <li><strong>Efeito crítico:</strong> Hepatotoxicidade</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>🔢 Fatores de Incerteza</h3>
+                        <ul>
+                            <li><strong>Variabilidade inter-espécie:</strong> 10</li>
+                            <li><strong>Variabilidade intra-espécie:</strong> 10</li>
+                            <li><strong>Duração do estudo:</strong> 2</li>
+                            <li><strong>Qualidade da base de dados:</strong> 1</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="formula-box">
+                    <strong>TDI = NOAEL ÷ (UF₁ × UF₂ × UF₃ × UF₄)</strong><br>
+                    TDI = 5 ÷ (10 × 10 × 2 × 1)<br>
+                    <strong>TDI = 0,025 mg/kg pc/dia</strong>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>💡 Interpretação</h4>
+                    <p>Um adulto de 70 kg pode consumir com segurança até <strong>1,75 mg/dia</strong> (0,025 × 70) do aditivo X durante toda a vida.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 34: Exercício 2 - Cálculo de EDI -->
+        <div class="slide">
+            <div class="slide-number">34/60</div>
+            <h2>📊 Exercício 2: Estimativa de Exposição (EDI)</h2>
+            <div class="workshop-section">
+                <h3>📋 Cenário</h3>
+                <p>Análises laboratoriais detectaram cádmio em chocolate amargo com concentração média de 0,8 mg/kg. Estimar a exposição de consumidores regulares.</p>
+                
+                <div class="two-column">
+                    <div>
+                        <h3>📊 Dados de Consumo (POF 2018)</h3>
+                        <table>
+                            <tr><th>População</th><th>Consumo (g/dia)</th><th>Peso (kg)</th></tr>
+                            <tr><td>Adultos</td><td>15</td><td>70</td></tr>
+                            <tr><td>Adolescentes</td><td>25</td><td>50</td></tr>
+                            <tr><td>Crianças</td><td>10</td><td>20</td></tr>
+                        </table>
+                    </div>
+                    <div>
+                        <h3>🔢 Cálculos</h3>
+                        <div class="formula-box">
+                            <strong>EDI = (C × IR) ÷ BW</strong><br>
+                            C = 0,8 mg/kg<br>
+                            IR = consumo (kg/dia)<br>
+                            BW = peso corporal (kg)
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart">
+                    <h3>📊 Resultados</h3>
+                    <table>
+                        <tr>
+                            <th>População</th>
+                            <th>EDI (μg/kg pc/dia)</th>
+                            <th>PTMI* (%)</th>
+                        </tr>
+                        <tr>
+                            <td>Adultos</td>
+                            <td>0,17</td>
+                            <td>0,7%</td>
+                        </tr>
+                        <tr>
+                            <td>Adolescentes</td>
+                            <td>0,40</td>
+                            <td>1,6%</td>
+                        </tr>
+                        <tr>
+                            <td>Crianças</td>
+                            <td>0,40</td>
+                            <td>1,6%</td>
+                        </tr>
+                    </table>
+                    <p><small>*PTMI Cádmio = 25 μg/kg pc/mês</small></p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>💡 Interpretação</h4>
+                    <p>A exposição ao cádmio via chocolate representa <strong>menos de 2%</strong> da ingestão tolerável, indicando <strong>risco baixo</strong> mesmo para consumidores regulares.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 35: Exercício 3 - Margin of Exposure -->
+        <div class="slide">
+            <div class="slide-number">35/60</div>
+            <h2>⚖️ Exercício 3: Margin of Exposure (MOE)</h2>
+            <div class="workshop-section">
+                <h3>📋 Cenário</h3>
+                <p>Avaliação de risco carcinogênico para aflatoxinas em amendoim. BMDL10 = 170 ng/kg pc/dia para hepatocarcinoma.</p>
+                
+                <div class="two-column">
+                    <div>
+                        <h3>📊 Dados de Exposição</h3>
+                        <table>
+                            <tr><th>Cenário</th><th>Concentração (μg/kg)</th><th>Consumo (g/dia)</th></tr>
+                            <tr><td>Consumidor médio</td><td>5</td><td>10</td></tr>
+                            <tr><td>Consumidor alto</td><td>15</td><td>30</td></tr>
+                            <tr><td>Pior cenário</td><td>20</td><td>50</td></tr>
+                        </table>
+                        <p><strong>Peso corporal:</strong> 60 kg (adulto brasileiro médio)</p>
+                    </div>
+                    <div>
+                        <h3>🔢 Cálculos Step-by-Step</h3>
+                        <div class="formula-box">
+                            <strong>1. EDI = (C × IR) ÷ BW</strong><br>
+                            <strong>2. MOE = BMDL10 ÷ EDI</strong><br><br>
+                            <small>Consumidor médio:</small><br>
+                            EDI = (5×0,01) ÷ 60 = 0,83 ng/kg/dia<br>
+                            MOE = 170 ÷ 0,83 = <strong>205</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart">
+                    <h3>📊 Resultados Comparativos</h3>
+                    <div class="bar-chart">
+                        <div class="bar" style="height: 20%;">
+                            <div class="bar-value">205</div>
+                            <div class="bar-label">Médio</div>
+                        </div>
+                        <div class="bar" style="height: 5%;">
+                            <div class="bar-value">38</div>
+                            <div class="bar-label">Alto</div>
+                        </div>
+                        <div class="bar" style="height: 3%;">
+                            <div class="bar-value">17</div>
+                            <div class="bar-label">Extremo</div>
+                        </div>
+                    </div>
+                    <p><small>Linha de referência: MOE ≥ 10.000 = baixa preocupação</small></p>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>💡 Interpretação</h4>
+                    <p>Todos os cenários apresentam MOE <strong><< 10.000</strong>, indicando <strong>preocupação para saúde pública</strong>. Necessárias medidas para reduzir exposição (princípio ALARA).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 36: Exercício 4 - Avaliação de Risco Agudo -->
+        <div class="slide">
+            <div class="slide-number">36/60</div>
+            <h2>⚡ Exercício 4: Avaliação de Risco Agudo</h2>
+            <div class="workshop-section">
+                <h3>📋 Cenário</h3>
+                <p>Análise de resíduos de pesticida em maçãs detectou aldicarbe (inseticida) em concentração de 0,3 mg/kg. Avaliar risco agudo para crianças.</p>
+                
+                <div class="two-column">
+                    <div>
+                        <h3>📊 Dados Toxicológicos</h3>
+                        <ul>
+                            <li><strong>ARfD:</strong> 0,001 mg/kg pc</li>
+                            <li><strong>Mecanismo:</strong> Inibição da colinesterase</li>
+                            <li><strong>Efeito crítico:</strong> Neurotoxicidade</li>
+                            <li><strong>População vulnerável:</strong> Crianças</li>
+                        </ul>
+                        
+                        <h3>🍎 Consumo de Maçã</h3>
+                        <ul>
+                            <li><strong>Porção grande:</strong> 200 g (1 maçã grande)</li>
+                            <li><strong>Peso criança:</strong> 15 kg (3 anos)</li>
+                            <li><strong>Cenário:</strong> Consumo único</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>🔢 Cálculos</h3>
+                        <div class="formula-box">
+                            <strong>IESTI = (C × IR) ÷ BW</strong><br><br>
+                            C = 0,3 mg/kg<br>
+                            IR = 0,2 kg<br>
+                            BW = 15 kg<br><br>
+                            IESTI = (0,3 × 0,2) ÷ 15<br>
+                            <strong>IESTI = 0,004 mg/kg pc</strong>
+                        </div>
+                        
+                        <div class="formula-box">
+                            <strong>%ARfD = (IESTI ÷ ARfD) × 100</strong><br><br>
+                            %ARfD = (0,004 ÷ 0,001) × 100<br>
+                            <strong>%ARfD = 400%</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>⚠️ ALERTA CRÍTICO</h4>
+                    <p>A exposição aguda excede em <strong>4 vezes</strong> a dose de referência (%ARfD = 400%). Há <strong>risco iminente</strong> à saúde, especialmente para crianças. <strong>Ação regulatória imediata necessária!</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 37: Integração de Dados - Caso Complexo -->
+        <div class="slide">
+            <div class="slide-number">37/60</div>
+            <h2>🔄 Exercício 5: Caso Complexo - Múltiplos Contaminantes</h2>
+            <div class="workshop-section">
+                <h3>📋 Cenário</h3>
+                <p>Análise de arroz detectou múltiplos contaminantes. Avaliar risco cumulativo considerando diferentes mecanismos de toxicidade.</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4>☢️ Arsênio Inorgânico</h4>
+                        <ul>
+                            <li><strong>Concentração:</strong> 0,15 mg/kg</li>
+                            <li><strong>BMDL0.5:</strong> 3 μg/kg pc/dia</li>
+                            <li><strong>Mecanismo:</strong> Carcinogênico</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🔗 Cádmio</h4>
+                        <ul>
+                            <li><strong>Concentração:</strong> 0,2 mg/kg</li>
+                            <li><strong>PTMI:</strong> 25 μg/kg pc/mês</li>
+                            <li><strong>Mecanismo:</strong> Nefrotóxico</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4>🍄 Aflatoxinas</h4>
+                        <ul>
+                            <li><strong>Concentração:</strong> 3 μg/kg</li>
+                            <li><strong>BMDL10:</strong> 170 ng/kg pc/dia</li>
+                            <li><strong>Mecanismo:</strong> Hepatocarcinogênico</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="two-column">
+                    <div>
+                        <h3>📊 Consumo de Arroz</h3>
+                        <ul>
+                            <li><strong>Média brasileira:</strong> 45 kg/ano</li>
+                            <li><strong>Consumo diário:</strong> 123 g/dia</li>
+                            <li><strong>Peso adulto:</strong> 70 kg</li>
+                            <li><strong>População de referência:</strong> Adultos</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>🔢 Resultados</h3>
+                        <table>
+                            <tr><th>Contaminante</th><th>EDI</th><th>Índice Risco</th></tr>
+                            <tr><td>As inorgânico</td><td>0,26 μg/kg/dia</td><td>MOE = 12</td></tr>
+                            <tr><td>Cádmio</td><td>0,35 μg/kg/dia</td><td>4,2% PTMI</td></tr>
+                            <tr><td>Aflatoxinas</td><td>5,3 ng/kg/dia</td><td>MOE = 32</td></tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>🎯 Interpretação Integrada</h4>
+                    <p><strong>Carcinogênicos (As, aflatoxinas):</strong> MOEs muito baixos indicam preocupação significativa. <strong>Não-carcinogênico (Cd):</strong> Exposição dentro dos limites aceitáveis. <strong>Conclusão:</strong> Risco dominado por contaminantes carcinogênicos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 38: Ferramentas de Avaliação -->
+        <div class="slide">
+            <div class="slide-number">38/60</div>
+            <h2>🛠️ Ferramentas para Avaliação de Risco</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>💻 Software e Bases de Dados</h3>
+                    <ul>
+                        <li><strong>WHO GEMS/Food:</strong> Exposição global</li>
+                        <li><strong>EFSA PRIMo:</strong> Resíduos de pesticidas</li>
+                        <li><strong>US EPA SHEDS:</strong> Exposição estocástica</li>
+                        <li><strong>@RISK:</strong> Simulação Monte Carlo</li>
+                        <li><strong>IBGE POF:</strong> Consumo brasileiro</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>📊 Modelos Estatísticos</h3>
+                    <ul>
+                        <li><strong>Determinístico:</strong> Cenário pontual</li>
+                        <li><strong>Probabilístico:</strong> Distribuições</li>
+                        <li><strong>Monte Carlo:</strong> Simulação</li>
+                        <li><strong>Bayesiano:</strong> Incerteza</li>
+                        <li><strong>Dois estágios:</strong> Consumidores/não-consumidores</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🎯 Validação e QA/QC</h3>
+                    <ul>
+                        <li><strong>Dados analíticos:</strong> LQ, incerteza</li>
+                        <li><strong>Dados de consumo:</strong> Representatividade</li>
+                        <li><strong>Fatores de processamento:</strong> Literatura</li>
+                        <li><strong>Análise de sensibilidade:</strong> Parâmetros críticos</li>
+                        <li><strong>Peer review:</strong> Validação externa</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>📈 Comunicação de Riscos</h3>
+                    <ul>
+                        <li><strong>Linguagem clara:</strong> Evitar jargão técnico</li>
+                        <li><strong>Contexto:</strong> Comparações relevantes</li>
+                        <li><strong>Incertezas:</strong> Transparência</li>
+                        <li><strong>Recomendações:</strong> Ações práticas</li>
+                        <li><strong>Monitoramento:</strong> Acompanhamento</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- SLIDES FINAIS -->
+        <!-- Slide 39: Síntese dos Aprendizados -->
+        <div class="slide">
+            <div class="slide-number">39/60</div>
+            <h1>📋 Síntese dos Aprendizados</h1>
+            <div class="grid">
+                <div class="card">
+                    <h3>🏛️ Marco Regulatório</h3>
+                    <ul>
+                        <li><strong>Integração:</strong> ANVISA-MAPA-Codex</li>
+                        <li><strong>Modernização:</strong> RDCs baseadas em risco</li>
+                        <li><strong>Harmonização:</strong> Padrões internacionais</li>
+                        <li><strong>Transparência:</strong> Metodologias explícitas</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>⚗️ Contaminantes Químicos</h3>
+                    <ul>
+                        <li><strong>Diversidade:</strong> Metais, micotoxinas, processo</li>
+                        <li><strong>Sem limiar:</strong> Carcinógenos genotóxicos</li>
+                        <li><strong>ALARA:</strong> Princípio de precaução</li>
+                        <li><strong>Métodos:</strong> Validação obrigatória</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🦠 Segurança Microbiológica</h3>
+                    <ul>
+                        <li><strong>Risco-base:</strong> Análise científica</li>
+                        <li><strong>Planos amostragem:</strong> 2 e 3 classes</li>
+                        <li><strong>Toxinas:</strong> Perigos emergentes</li>
+                        <li><strong>Vida útil:</strong> Throughout shelf life</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🌱 Agrotóxicos</h3>
+                    <ul>
+                        <li><strong>LMR:</strong> Baseado em GAP</li>
+                        <li><strong>PARA:</strong> Monitoramento contínuo</li>
+                        <li><strong>Risco agudo:</strong> ARfD crítica</li>
+                        <li><strong>Irregularidades:</strong> Foco em educação</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🧪 Aditivos</h3>
+                    <ul>
+                        <li><strong>Lista positiva:</strong> Segurança garantida</li>
+                        <li><strong>IDA:</strong> Parâmetro orientador</li>
+                        <li><strong>Rotulagem:</strong> Transparência obrigatória</li>
+                        <li><strong>Quantum satis:</strong> Flexibilidade técnica</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>📦 Materiais Contato</h3>
+                    <ul>
+                        <li><strong>Inércia:</strong> Princípio fundamental</li>
+                        <li><strong>Migração:</strong> Limites específicos</li>
+                        <li><strong>NIAS:</strong> Controle emergente</li>
+                        <li><strong>BPF:</strong> Prevenção na origem</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 40: Ferramentas para a Prática -->
+        <div class="slide">
+            <div class="slide-number">40/60</div>
+            <h2>🛠️ Ferramentas para a Prática Profissional</h2>
+            <div class="two-column">
+                <div>
+                    <h3>📚 Literatura Essencial</h3>
+                    <ul>
+                        <li><strong>WHO/FAO:</strong> Evaluations of JECFA</li>
+                        <li><strong>EFSA Journal:</strong> Scientific opinions</li>
+                        <li><strong>Food Chem Toxicol:</strong> Peer-reviewed articles</li>
+                        <li><strong>Regulat Toxicol Pharm:</strong> Regulatory science</li>
+                        <li><strong>ANVISA:</strong> Notas técnicas</li>
+                    </ul>
+                    
+                    <h3>💻 Software Recomendado</h3>
+                    <ul>
+                        <li><strong>R/Python:</strong> Análise estatística</li>
+                        <li><strong>@RISK:</strong> Simulação Monte Carlo</li>
+                        <li><strong>EFSA tools:</strong> PRIMo, SSD</li>
+                        <li><strong>ToxPi:</strong> Visualização de risco</li>
+                        <li><strong>ChemSpider:</strong> Base química</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🌐 Recursos Online</h3>
+                    <ul>
+                        <li><strong>WHO GEMS/Food:</strong> Dados exposição global</li>
+                        <li><strong>EFSA Database:</strong> Opinões científicas</li>
+                        <li><strong>FDA databases:</strong> Regulamentação US</li>
+                        <li><strong>Codex texts:</strong> Padrões internacionais</li>
+                        <li><strong>OECD guidelines:</strong> Métodos teste</li>
+                    </ul>
+                    
+                    <h3>🎓 Cursos de Atualização</h3>
+                    <ul>
+                        <li><strong>ILSI:</strong> Risk assessment courses</li>
+                        <li><strong>EFSA:</strong> Online training</li>
+                        <li><strong>WHO:</strong> Food safety workshops</li>
+                        <li><strong>ANVISA:</strong> Capacitações técnicas</li>
+                        <li><strong>Universidades:</strong> Especialização</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>💡 Dica Profissional</h4>
+                <p>Mantenha-se sempre atualizado através de <strong>alertas científicos</strong>, participação em <strong>redes profissionais</strong> e <strong>educação continuada</strong>. A toxicologia de alimentos é uma ciência em constante evolução!</p>
+            </div>
+        </div>
+
+        <!-- Slide 41: Questões para Reflexão -->
+        <div class="slide">
+            <div class="slide-number">41/60</div>
+            <h2>🤔 Questões para Reflexão</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>⚖️ Ética e Precaução</h3>
+                    <ul>
+                        <li>Como equilibrar evidência científica e princípio da precaução?</li>
+                        <li>Qual o papel da incerteza na tomada de decisão regulatória?</li>
+                        <li>Como comunicar riscos sem gerar pânico desnecessário?</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🌍 Harmonização Global</h3>
+                    <ul>
+                        <li>Devemos adotar integralmente padrões internacionais?</li>
+                        <li>Como considerar peculiaridades da dieta brasileira?</li>
+                        <li>Qual o impacto das diferenças regulatórias no comércio?</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🔬 Avanços Tecnológicos</h3>
+                    <ul>
+                        <li>Como integrar novas metodologias analíticas?</li>
+                        <li>Qual o papel da inteligência artificial na avaliação de risco?</li>
+                        <li>Como regular contaminantes ainda não identificados?</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>👥 Aspectos Sociais</h3>
+                    <ul>
+                        <li>Como considerar populações vulneráveis?</li>
+                        <li>Qual o impacto socioeconômico das medidas regulatórias?</li>
+                        <li>Como promover equidade na segurança alimentar?</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>💭 Reflexão Final</h4>
+                <p>A toxicologia de alimentos não é apenas uma ciência técnica, mas uma <strong>responsabilidade social</strong>. Cada decisão que tomamos impacta diretamente a saúde de milhões de pessoas. Como podemos fazer sempre o melhor com o conhecimento disponível?</p>
+            </div>
+        </div>
+
+        <!-- Slide 42: Avaliação e Feedback -->
+        <div class="slide">
+            <div class="slide-number">42/60</div>
+            <h2>📝 Avaliação da Aprendizagem</h2>
+            <div class="two-column">
+                <div>
+                    <h3>🎯 Competências Desenvolvidas</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <strong>Conhecimento Técnico</strong>
+                            <p>Marco regulatório, contaminantes, métodos analíticos</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Habilidades Analíticas</strong>
+                            <p>Cálculos toxicológicos, interpretação de dados</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Pensamento Crítico</strong>
+                            <p>Avaliação de riscos, tomada de decisão</p>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Aplicação Prática</strong>
+                            <p>Estudos de caso, resolução de problemas</p>
+                            <p>Estudos publicados recentemente</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+         <!-- Slide 43: Pesquisa do docente -->
+        <div class="slide">
+            <div class="slide-number">43/60</div>
+            <h2>📝 Pesquisas recém-publicadas</h2>
+            <div class="two-column">
+                <div>
+                    <h3>Artigos</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                          <p><strong>From cellular perturbation to probabilistic risk assessments</strong></p>
+                            <a href="https://www.altex.org/index.php/altex/article/view/2937">Acesse o artigo</a>
+                        </div>
+                        <div class="timeline-item">
+                           <p><strong>A novel method to derive a human safety limit for PFOA by gene expression profiling and modelling</strong></p>
+                            <a href="https://www.frontiersin.org/journals/toxicology/articles/10.3389/ftox.2024.1368320/full">Acesse o artigo</a>                           
+                        </div>
+                        <div class="timeline-item">
+                            <strong>STopTox: An in Silico Alternative to Animal Testing for Acute Systemic and Topical Toxicity</strong>
+                         <p><a href="https://ehp.niehs.nih.gov/doi/10.1289/EHP9341">Acesse o artigo</a></p>
+                            <a href="https://stoptox.mml.unc.edu/">Acesse o aplicativo web</a>
+                        </div>
+                        <div class="timeline-item">
+                         <p><strong>CATMoS: Collaborative Acute Toxicity Modeling Suite</strong></p>
+                            <a href="https://ehp.niehs.nih.gov/doi/10.1289/EHP8495">Acesse o artigo</a>
+                        </div>
+                    </div>
+                </div>
+        </div>
